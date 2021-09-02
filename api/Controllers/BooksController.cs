@@ -21,14 +21,14 @@ namespace api.Controllers
     [HttpGet]
     public async Task<ActionResult<IEnumerable<Book>>> GetBooks()
     {
-      return await _context.Book.ToListAsync();
+      return await _context.Books.ToListAsync();
     }
 
     [Authorize]
     [HttpGet("{id}")]
     public async Task<ActionResult<Book>> GetBook(int id)
     {
-      return await _context.Book.FindAsync(id);
+      return await _context.Books.FindAsync(id);
     }
   }
 }

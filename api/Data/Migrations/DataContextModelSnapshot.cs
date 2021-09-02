@@ -62,7 +62,7 @@ namespace api.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Book");
+                    b.ToTable("Books");
                 });
 
             modelBuilder.Entity("api.Entities.Subscription", b =>
@@ -86,7 +86,7 @@ namespace api.Data.Migrations
 
                     b.HasIndex("BookId");
 
-                    b.ToTable("Subscription");
+                    b.ToTable("Subscriptions");
                 });
 
             modelBuilder.Entity("api.Entities.Subscription", b =>

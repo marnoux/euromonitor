@@ -20,14 +20,14 @@ namespace api.Controllers
     [HttpGet]
     public async Task<ActionResult<IEnumerable<Subscription>>> GetSubscriptions()
     {
-      return await _context.Subscription.ToListAsync();
+      return await _context.Subscriptions.ToListAsync();
     }
 
     [Authorize]
-    [HttpGet]
+    [HttpGet("{id}")]
     public async Task<ActionResult<Subscription>> GetSubscription(int id)
     {
-      return await _context.Subscription.FindAsync(id);
+      return await _context.Subscriptions.FindAsync(id);
     }
   }
 }

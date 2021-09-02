@@ -10,7 +10,7 @@ namespace api.Data
     }
 
     public DbSet<AppUser> Users { get; set; }
-    public DbSet<Book> Book { get; set; }
-    public DbSet<Subscription> Subscription { get; set; }
+    public DbSet<Book> Books { get; set; }
+    public DbSet<Subscription> Subscriptions { get; set; }
   }
 }
