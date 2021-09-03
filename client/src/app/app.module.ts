@@ -7,14 +7,11 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavComponent } from './nav/nav.component';
 import { FormsModule } from '@angular/forms';
-import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
-import { ToastrModule } from 'ngx-toastr';
 import { BooksComponent } from './books/books.component';
 import { SharedModule } from './_modules/shared.module';
-import { SubscriptionNewComponent } from './subscriptions/subscription-new/subscription-new.component';
-import { SubscriptionViewComponent } from './subscriptions/subscription-view/subscription-view.component';
+import { SubscriptionsComponent } from './subscriptions/subscriptions.component';
 
 @NgModule({
   declarations: [
@@ -23,8 +20,7 @@ import { SubscriptionViewComponent } from './subscriptions/subscription-view/sub
     HomeComponent,
     RegisterComponent,
     BooksComponent,
-    SubscriptionNewComponent,
-    SubscriptionViewComponent,
+    SubscriptionsComponent,
   ],
   imports: [
     BrowserModule,

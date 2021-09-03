@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { BooksComponent } from './books/books.component';
 import { HomeComponent } from './home/home.component';
-import { SubscriptionNewComponent } from './subscriptions/subscription-new/subscription-new.component';
-import { SubscriptionViewComponent } from './subscriptions/subscription-view/subscription-view.component';
+import { SubscriptionsComponent } from './subscriptions/subscriptions.component';
 import { AuthGuard } from './_guards/auth.guard';
 
 const routes: Routes = [
@@ -12,8 +12,8 @@ const routes: Routes = [
     runGuardsAndResolvers: 'always',
     canActivate: [AuthGuard],
     children: [
-      { path: 'new-sub', component: SubscriptionNewComponent },
-      { path: 'view-sub', component: SubscriptionViewComponent },
+      { path: 'subscriptions', component: SubscriptionsComponent },
+      { path: 'books', component: BooksComponent },
     ],
   },
   { path: '**', component: HomeComponent, pathMatch: 'full' },
