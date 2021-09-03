@@ -30,6 +30,9 @@ namespace api.Controllers
       var user = new AppUser
       {
         UserName = registerDto.Username.ToLower(),
+        FirstName = registerDto.FirstName,
+        LastName = registerDto.LastName,
+        Email = registerDto.Email,
         PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(registerDto.Password)),
         PasswordSalt = hmac.Key
       };

@@ -1,1 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
+.dropdown-toggle,
+.dropdown-item {
+  cursor: pointer;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="color"]:focus,
+.uneditable-input:focus {
+  background-color: rgb(209, 242, 255);
+  border-color: rgba(0, 247, 255, 0.8);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgb(0, 225, 255);
+  outline: 0 none;
+}
+
+input {
+  background-color: azure !important;
+}

@@ -16,18 +16,19 @@ namespace api.Controllers
       _context = context;
     }
 
-    [Authorize]
+    // [Authorize]
     [HttpGet]
     public async Task<ActionResult<IEnumerable<Subscription>>> GetSubscriptions()
     {
       return await _context.Subscriptions.ToListAsync();
     }
 
-    [Authorize]
+    // [Authorize]
     [HttpGet("{id}")]
     public async Task<ActionResult<Subscription>> GetSubscription(int id)
     {
       return await _context.Subscriptions.FindAsync(id);
     }
+    
   }
 }
