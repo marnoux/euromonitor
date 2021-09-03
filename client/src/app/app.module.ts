@@ -10,16 +10,29 @@ import { FormsModule } from '@angular/forms';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
+import { ToastrModule } from 'ngx-toastr';
+import { BooksComponent } from './books/books.component';
+import { SharedModule } from './_modules/shared.module';
+import { SubscriptionNewComponent } from './subscriptions/subscription-new/subscription-new.component';
+import { SubscriptionViewComponent } from './subscriptions/subscription-view/subscription-view.component';
 
 @NgModule({
-  declarations: [AppComponent, NavComponent, HomeComponent, RegisterComponent],
+  declarations: [
+    AppComponent,
+    NavComponent,
+    HomeComponent,
+    RegisterComponent,
+    BooksComponent,
+    SubscriptionNewComponent,
+    SubscriptionViewComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
     FormsModule,
-    BsDropdownModule.forRoot(),
+    SharedModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
