@@ -1,1 +1,26 @@
-<p>subscriptions works!</p>
+<h1 class="text-center">Active Subscriptions</h1>
+<hr />
+<div class="container">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Book</th>
+        <th scope="col">Date Added</th>
+        <th scope="col">Manage</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let sub of subs; let i = index">
+        <th scope="row">{{ i + 1 }}</th>
+        <td>{{ sub.dateAdded | date: "medium" }}</td>
+        <td>{{ sub.name }}</td>
+        <td>
+          <button (click)="removeSub(sub.id)" class="btn btn-danger">
+            Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

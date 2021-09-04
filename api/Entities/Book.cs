@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace api.Entities
 {
   public class Book

@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-books',
@@ -11,7 +12,7 @@ export class BooksComponent implements OnInit {
   books: any;
   subs: any;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private toastr: ToastrService) {}
 
   ngOnInit() {
     this.getBooks();
@@ -41,9 +42,16 @@ export class BooksComponent implements OnInit {
           BookId: id,
           AppUserId: user.id,
         })
-        .subscribe((response) => {
-          this.subs = response;
-        });
+        .subscribe(
+          (response) => {
+            this.subs = response;
+            this.toastr.success('Subscription added successfully');
+          },
+          (error) => {
+            console.log(error);
+            this.toastr.error(error.error);
+          }
+        );
     }
   }
 }

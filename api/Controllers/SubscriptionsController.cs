@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using api.Data;
 using Microsoft.AspNetCore.Authorization;
@@ -19,17 +20,21 @@ namespace api.Controllers
     }
 
     // [Authorize]
-    [HttpGet]
-    public async Task<ActionResult<IEnumerable<Subscription>>> GetSubscriptions()
+    [HttpGet("{userId}")]
+    public IQueryable<Object> GetUserSubs(int userId)
     {
-      return await _context.Subscriptions.ToListAsync();
-    }
+      return from s in _context.Subscriptions
+             join b in _context.Books on s.BookId equals b.Id
+             join u in _context.Users on s.AppUserId equals u.Id
+             where s.AppUserId == userId
+             select new
+             {
+               s.Id,
+               s.DateAdded,
+               b.Name,
+               u.UserName
+             };
 
-    // [Authorize]
-    [HttpGet("{id}")]
-    public async Task<ActionResult<Subscription>> GetSubscription(int id)
-    {
-      return await _context.Subscriptions.FindAsync(id);
     }
 
     // POST: api/Book
@@ -59,10 +64,21 @@ namespace api.Controllers
       };
     }
 
-    // Add helper method to see if book exists before saving to db
-    private async Task<bool> SubExists(string name)
+    // DELETE subcriptions/1
+    [HttpDelete("{id:int}")]
+    public ActionResult<SubscriptionsDto> DeleteSub(int id)
     {
-      return await _context.Books.AnyAsync(book => book.Name == name);
+      if (id <= 0)
+      {
+        return BadRequest("Not a valid subscription");
+      }
+
+      Subscription sub = new Subscription() { Id = id };
+      _context.Subscriptions.Attach(sub);
+      _context.Subscriptions.Remove(sub);
+      _context.SaveChanges();
+
+      return Ok();
     }
   }
 }
