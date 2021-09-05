@@ -36,7 +36,7 @@ Dependencies
 >  cd api
 >  dotnet ef database update
 >  dotnet watch run
->  #### The API documentation should appear in an open browser window
+>  #### The API documentation should appear in an open browser window, incase that doesn't work you can click this link https://localhost:5001/swagger/index.html
 
 >  ## Start Client
 >  #### Open a new terminal instance in the client directory (As the first one will be used to run the API)
@@ -55,7 +55,7 @@ Dependencies
 > Creating a user that already exists
 > ![enter image description here](https://i.imgur.com/hyrK0yv.png)
 >  ## Using the API
->  I have attached a postman collection that can be used to test the API endpoints.  
+>  I have attached a [Postman collection](Euromonitor Assesment.postman_collection.json) that can be used to test the API endpoints.  
 >  ![enter image description here](https://i.imgur.com/mne45ZW.png)
 > The tokenization is parameterized so you won't have to add it in manually every time
 > ![enter image description here](https://i.imgur.com/ltzmzy8.png)
