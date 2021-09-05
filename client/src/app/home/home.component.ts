@@ -8,10 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
   registerMode = false;
+  isLoggedIn = false;
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit() {
+    this.checkLogin();
+  }
 
   registerToggle() {
     this.registerMode = !this.registerMode;
@@ -19,5 +22,12 @@ export class HomeComponent implements OnInit {
 
   cancelRegisterMode(event: boolean) {
     this.registerMode = event;
+  }
+
+  checkLogin() {
+    const user = JSON.parse(localStorage.getItem('user')!);
+
+    if (user) this.isLoggedIn = true;
+    else this.isLoggedIn = false;
   }
 }

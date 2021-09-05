@@ -42,10 +42,10 @@ namespace api.Controllers
     [HttpPost]
     public async Task<ActionResult<SubscriptionsDto>> PostSub(SubscriptionsDto subscriptionsDto)
     {
-      // if (await BookExists(bookDto.Name))
-      // {
-      //   return BadRequest("Book already exists");
-      // }
+      if (await SubExists(subscriptionsDto.AppUserId, subscriptionsDto.BookId))
+      {
+        return BadRequest("Subscription already active");
+      }
 
       var sub = new Subscription
       {
@@ -79,6 +79,12 @@ namespace api.Controllers
       _context.SaveChanges();
 
       return Ok();
+    }
+
+    // Add helper method to see if book exists before saving to db
+    private async Task<bool> SubExists(int AppUserId, int BookId)
+    {
+      return await _context.Subscriptions.AnyAsync(sub => sub.AppUserId == AppUserId && sub.BookId == BookId);
     }
   }
 }

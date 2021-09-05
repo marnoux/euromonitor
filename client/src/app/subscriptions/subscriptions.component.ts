@@ -49,7 +49,7 @@ export class SubscriptionsComponent implements OnInit {
         (response) => {
           console.log(response);
           this.toastr.success('Subscription removed successfully');
-          this.router.navigate(['subscriptions']);
+          this.ngOnInit();
         },
         (error) => {
           console.log(error);

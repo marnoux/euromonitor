@@ -5,8 +5,8 @@
     <thead>
       <tr>
         <th scope="col">#</th>
-        <th scope="col">Book</th>
         <th scope="col">Date Added</th>
+        <th scope="col">Book</th>
         <th scope="col">Manage</th>
       </tr>
     </thead>
@@ -16,7 +16,11 @@
         <td>{{ sub.dateAdded | date: "medium" }}</td>
         <td>{{ sub.name }}</td>
         <td>
-          <button (click)="removeSub(sub.id)" class="btn btn-danger">
+          <button
+            (click)="removeSub(sub.id)"
+            type="submit"
+            class="btn btn-danger"
+          >
             Delete
           </button>
         </td>
