@@ -19,7 +19,7 @@ namespace api.Controllers
       _context = context;
     }
 
-    // [Authorize]
+    [Authorize]
     [HttpGet("{userId}")]
     public IQueryable<Object> GetUserSubs(int userId)
     {
@@ -38,7 +38,7 @@ namespace api.Controllers
     }
 
     // POST: api/Book
-    // [Authorize]
+    [Authorize]
     [HttpPost]
     public async Task<ActionResult<SubscriptionsDto>> PostSub(SubscriptionsDto subscriptionsDto)
     {
@@ -65,6 +65,7 @@ namespace api.Controllers
     }
 
     // DELETE subcriptions/1
+    [Authorize]
     [HttpDelete("{id:int}")]
     public ActionResult<SubscriptionsDto> DeleteSub(int id)
     {

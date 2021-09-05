@@ -18,14 +18,14 @@ namespace api.Controllers
       _context = context;
     }
 
-    // [Authorize]
+    [Authorize]
     [HttpGet]
     public async Task<ActionResult<IEnumerable<Book>>> GetBooks()
     {
       return await _context.Books.ToListAsync();
     }
 
-    // [Authorize]
+    [Authorize]
     [HttpGet("{id}")]
     public async Task<ActionResult<Book>> GetBook(int id)
     {

@@ -1,4 +1,5 @@
 import { HttpClient } from '@angular/common/http';
+import { HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 
@@ -19,14 +20,18 @@ export class BooksComponent implements OnInit {
   }
 
   getBooks() {
-    const auth_token = 'f';
-    const header = new Headers({
-      Authorization: `Bearer ${auth_token}`,
-    });
+    const user = JSON.parse(localStorage.getItem('user'));
+    const auth_token = user.token;
+    const headers = new HttpHeaders().set(
+      'Authorization',
+      `Bearer ${auth_token}`
+    );
 
-    this.http.get(this.baseUrl + 'books').subscribe((response) => {
-      this.books = response;
-    });
+    this.http
+      .get(this.baseUrl + 'books', { headers: headers })
+      .subscribe((response) => {
+        this.books = response;
+      });
   }
 
   imageSrc(id) {
@@ -35,13 +40,22 @@ export class BooksComponent implements OnInit {
 
   addSubscription(id, name) {
     const user = JSON.parse(localStorage.getItem('user'));
+    const auth_token = user.token;
+    const headers = new HttpHeaders().set(
+      'Authorization',
+      `Bearer ${auth_token}`
+    );
 
     if (confirm('Are you want to subscribe to' + name)) {
       this.http
-        .post(this.baseUrl + 'subscriptions', {
-          BookId: id,
-          AppUserId: user.id,
-        })
+        .post(
+          this.baseUrl + 'subscriptions',
+          {
+            BookId: id,
+            AppUserId: user.id,
+          },
+          { headers: headers }
+        )
         .subscribe(
           (response) => {
             this.subs = response;

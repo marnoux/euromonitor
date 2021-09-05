@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -25,37 +25,47 @@ export class SubscriptionsComponent implements OnInit {
 
   getSubs() {
     const user = JSON.parse(localStorage.getItem('user'));
-
-    const auth_token = 'f';
-    const header = new Headers({
-      Authorization: `Bearer ${auth_token}`,
-    });
-
-    this.http.get(this.baseUrl + 'subscriptions/' + this.user.id).subscribe(
-      (response) => {
-        this.subs = response;
-        console.log(response);
-      },
-      (error) => {
-        console.log(error);
-        this.toastr.error(error.error);
-      }
+    const auth_token = user.token;
+    const headers = new HttpHeaders().set(
+      'Authorization',
+      `Bearer ${auth_token}`
     );
-  }
-
-  removeSub(id) {
-    if (confirm('Are you want to delete this subscription?')) {
-      this.http.delete(this.baseUrl + 'subscriptions/' + id).subscribe(
+    this.http
+      .get(this.baseUrl + 'subscriptions/' + this.user.id, { headers: headers })
+      .subscribe(
         (response) => {
+          this.subs = response;
           console.log(response);
-          this.toastr.success('Subscription removed successfully');
-          this.ngOnInit();
         },
         (error) => {
           console.log(error);
           this.toastr.error(error.error);
         }
       );
+  }
+
+  removeSub(id) {
+    const user = JSON.parse(localStorage.getItem('user'));
+    const auth_token = user.token;
+    const headers = new HttpHeaders().set(
+      'Authorization',
+      `Bearer ${auth_token}`
+    );
+
+    if (confirm('Are you want to delete this subscription?')) {
+      this.http
+        .delete(this.baseUrl + 'subscriptions/' + id, { headers: headers })
+        .subscribe(
+          (response) => {
+            console.log(response);
+            this.toastr.success('Subscription removed successfully');
+            this.ngOnInit();
+          },
+          (error) => {
+            console.log(error);
+            this.toastr.error(error.error);
+          }
+        );
     }
   }
 }
