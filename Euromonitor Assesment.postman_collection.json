@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "3243d836-f2c8-4266-8d0e-c13789356525",
-		"name": "Euromonitor Assesment",
+		"_postman_id": "64be3f6d-2b95-4769-b350-f7dbf0d87771",
+		"name": "Euromonitor Assesment Copy",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -138,7 +138,40 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"12 More Rules\",\r\n    \"text\": \"12 More Rules for Life\",\r\n    \"price\": 259.99\r\n}",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/books",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"books"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Book",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Newly Created Book\",\r\n    \"text\": \"Newly Created Book Text\",\r\n    \"price\": 59.99\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
