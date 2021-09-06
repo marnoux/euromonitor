@@ -18,6 +18,8 @@ namespace api.Controllers
       _context = context;
     }
 
+    // GET: /api/users
+    // This endpoint will be used to return data on all users
     [Authorize]
     [HttpGet]
     public async Task<ActionResult<IEnumerable<AppUser>>> GetUsers()
@@ -25,6 +27,8 @@ namespace api.Controllers
       return await _context.Users.ToListAsync();
     }
 
+    // GET: /api/users/1
+    // This endpoint will be used to return data on a specific user by passing in their Id
     [Authorize]
     [HttpGet("{id}")]
     public async Task<ActionResult<AppUser>> GetUser(int id)

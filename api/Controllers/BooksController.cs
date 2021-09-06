@@ -18,6 +18,8 @@ namespace api.Controllers
       _context = context;
     }
 
+    // GET: api/books/1
+    // This endpoint will be used to get details about all books 
     [Authorize]
     [HttpGet]
     public async Task<ActionResult<IEnumerable<Book>>> GetBooks()
@@ -25,6 +27,8 @@ namespace api.Controllers
       return await _context.Books.ToListAsync();
     }
 
+    // GET: api/books/1
+    // This endpoint will be used to get details about a specific book by passing in it's Id
     [Authorize]
     [HttpGet("{id}")]
     public async Task<ActionResult<Book>> GetBook(int id)
@@ -33,6 +37,7 @@ namespace api.Controllers
     }
 
     // POST: api/Book
+    // This endpoint will be used to create new books
     [Authorize]
     [HttpPost]
     public async Task<ActionResult<BookDto>> PostBook(BookDto bookDto)
@@ -60,7 +65,7 @@ namespace api.Controllers
       };
     }
 
-    // Add helper method to see if book exists before saving to db
+    // Helper method to see if book exists before saving to db
     private async Task<bool> BookExists(string name)
     {
       return await _context.Books.AnyAsync(book => book.Name == name);

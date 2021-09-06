@@ -20,6 +20,8 @@ namespace api.Controllers
       _context = context;
     }
 
+    // POST: /api/account/register
+    // This endpoint will be used to register a new user 
     [HttpPost("register")]
     public async Task<ActionResult<UserDto>> Register(RegisterDto registerDto)
     {
@@ -48,6 +50,8 @@ namespace api.Controllers
       };
     }
 
+    // POST: /api/account/login
+    // This endpoint will be used to get a token for a user that has already been registered
     [HttpPost("login")]
     public async Task<ActionResult<UserDto>> Login(LoginDto loginDto)
     {

@@ -19,6 +19,8 @@ namespace api.Controllers
       _context = context;
     }
 
+    // GET: api/subscriptions/1
+    // This endpoint will be used to return all active subscriptions for a user
     [Authorize]
     [HttpGet("{userId}")]
     public IQueryable<Object> GetUserSubs(int userId)
@@ -37,7 +39,8 @@ namespace api.Controllers
 
     }
 
-    // POST: api/Book
+    // POST: api/subscriptions
+    // This endpoint will be used to create a new subscription for a user
     [Authorize]
     [HttpPost]
     public async Task<ActionResult<SubscriptionsDto>> PostSub(SubscriptionsDto subscriptionsDto)
@@ -64,7 +67,8 @@ namespace api.Controllers
       };
     }
 
-    // DELETE subcriptions/1
+    // DELETE: subcriptions/1
+    // This endpoint will be used to remove subscriptions for a user
     [Authorize]
     [HttpDelete("{id:int}")]
     public ActionResult<SubscriptionsDto> DeleteSub(int id)
@@ -82,7 +86,7 @@ namespace api.Controllers
       return Ok();
     }
 
-    // Add helper method to see if book exists before saving to db
+    // Add helper method to see if subscription exists before saving to db
     private async Task<bool> SubExists(int AppUserId, int BookId)
     {
       return await _context.Subscriptions.AnyAsync(sub => sub.AppUserId == AppUserId && sub.BookId == BookId);

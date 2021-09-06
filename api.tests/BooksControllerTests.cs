@@ -8,10 +8,10 @@ using Xunit;
 
 namespace api.tests
 {
-  public class UsersControllerTests
+  public class BooksControllerTests
   {
     [Fact]
-    public async Task GetUsersAsync_WithUserEntry_ReturnsSuccess()
+    public async Task GetBooksAsync_WithBookEntry_ReturnsSuccess()
     {
       // Arrange
       var options = new DbContextOptionsBuilder<DataContext>()
@@ -20,28 +20,20 @@ namespace api.tests
 
       var _context = new DataContext(options);
 
-      var controller = new UsersController(_context);
+      var controller = new BooksController(_context);
 
       // Insert seed data into the database using one instance of the context
       using (var context = new DataContext(options))
       {
-        context.Users.Add(new AppUser
-        {
-          Id = 1,
-          UserName = "UserName",
-          Email = "TestEmail",
-          FirstName = "TestFirstName",
-          LastName = "TestLastName",
-        });
-
+        context.Books.Add(new Book { Id = 1, Name = "TestBook", Text = "TestText", Price = 29 });
         context.SaveChanges();
       }
 
       // Act
-      var result = await controller.GetUsers();
+      var result = await controller.GetBooks();
 
       // Assert
-      var items = Assert.IsType<List<AppUser>>(result.Value);
+      var items = Assert.IsType<List<Book>>(result.Value);
       Assert.Equal(1, items.Count);
     }
   }
